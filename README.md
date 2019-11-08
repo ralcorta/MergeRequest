@@ -20,8 +20,8 @@ composer require pyxeel/merge_rules
 
 2- Second, now we can use
 
-```
-  MergeRules::merge([$rules, "prefix"], $moreRules)
+```php
+MergeRules::merge([$rules, "prefix"], $moreRules)
 ```
 
 ### Example
@@ -34,7 +34,7 @@ composer require pyxeel/merge_rules
 
 2- Now, we are going to create two models for merge the rules
 
-```
+```php
 <?php
 
 namespace App;
@@ -87,7 +87,7 @@ php artisan make:request CustomRequest
 
 4- And now we can merge the rules like this:
 
-```
+```php
 <?php
 
 namespace App\Http\Requests;
@@ -121,7 +121,7 @@ class CustomRequest extends FormRequest
 
 Output:
 
-```
+```php
 array:5 [▼
   "ModelOne" => "required|array"
   "ModelOne.date" => "date|required"
