@@ -1,86 +1,136 @@
 # MergeRequest
 
-One Paragraph of project description goes here
+MergeRequest is a package for Laravel to merge rules between models and use them for request validations.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Here is a basic example of how we can use the package:
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+Have a Laravel Proyect 5+ and composer
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+1- First download de package using composer
 
 ```
-Give the example
+composer require pyxeel/merge_rules
 ```
 
-And repeat
+2- Second, now we can use
 
 ```
-until finished
+  MergeRules::merge([$rules, "prefix"], $moreRules)
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+### Example
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+1- Download de package
 
 ```
-Give an example
+composer require pyxeel/merge_rules
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
+2- Now, we are going to create two models for merge the rules
 
 ```
-Give an example
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class ModelOne extends Model
+{
+    public static $rules = [
+        'date' => 'date|required',
+        'description' => 'string|nullable'
+    ];
+    
+    public static function rules()
+    {
+        return self::$rules;
+    }
+}
+
 ```
 
-## Deployment
+```
+<?php
 
-Add additional notes about how to deploy this on a live system
+namespace App;
 
-## Built With
+use Illuminate\Database\Eloquent\Model;
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+class ModelTwo extends Model
+{
+    public static $rules = [
+        'name' => 'string|required',
+        'doc' => 'numeric|required'
+    ];
+    
+    public static function rules()
+    {
+        return self::$rules;
+    }
+}
 
-## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+```
 
-## Versioning
+3- Create a custom request
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+```
+php artisan make:request CustomRequest
+```
 
-## Authors
+4- And now we can merge the rules like this:
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+```
+<?php
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class CustomRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return MergeRules::merge([ModelOne::rules(), "ModelOne"], ModelTwo::rules())
+    }
+}
+
+```
+
+Output:
+
+```
+array:5 [▼
+  "ModelOne" => "required|array"
+  "ModelOne.date" => "date|required"
+  "ModelOne.description" => "string|nullable"
+  "name" => "string|required"
+  "doc" => "numeric|required"
+]
+```
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
