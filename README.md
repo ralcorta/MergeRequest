@@ -21,7 +21,7 @@ composer require pyxeel/merge_rules
 2- Second, now we can use
 
 ```php
-MergeRules::merge([$rules, "prefix"], $moreRules)
+MergeRules::merge([$rules, "prefix"], $moreRules);
 ```
 
 ### Example
@@ -113,13 +113,7 @@ class CustomRequest extends FormRequest
      */
     public function rules()
     {
-        return MergeRules::merge(
-            [
-                ModelOne::rules(), 
-                "ModelOne"
-            ],
-            ModelTwo::rules()
-        )
+        return MergeRules::merge([ModelOne::rules(), "ModelOne"], ModelTwo::rules());
     }
 }
 
