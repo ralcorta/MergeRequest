@@ -12,7 +12,7 @@ Have a Laravel Proyect 5+ and composer
 
 ### Installing
 
-1- First download de package using composer
+1- First download the package using composer
 
 ```
 composer require pyxeel/merge_rules
@@ -26,7 +26,7 @@ MergeRules::merge([$rules, "prefix"], $moreRules)
 
 ### Example
 
-1- Download de package
+1- Download the package
 
 ```
 composer require pyxeel/merge_rules
