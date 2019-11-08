@@ -113,7 +113,13 @@ class CustomRequest extends FormRequest
      */
     public function rules()
     {
-        return MergeRules::merge([ModelOne::rules(), "ModelOne"], ModelTwo::rules())
+        return MergeRules::merge(
+            [
+                ModelOne::rules(), 
+                "ModelOne"
+            ],
+            ModelTwo::rules()
+        )
     }
 }
 
