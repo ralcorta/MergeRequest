@@ -56,7 +56,7 @@ class ModelOne extends Model
 
 ```
 
-```
+```php
 <?php
 
 namespace App;
