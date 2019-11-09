@@ -53,7 +53,7 @@ class MergeRules
     }
 
     /**
-     * Return the current rule
+     * Returns the current rule
      *
      * @return array
      */
@@ -76,7 +76,7 @@ class MergeRules
     }
 
     /**
-     * Return prefix
+     * Returns prefix
      *
      * @return string
      */
@@ -108,7 +108,7 @@ class MergeRules
     }
 
     /**
-     * Dispatch a error of invalid type
+     * Dispatch an error of invalid type
      *
      * @return void
      */
@@ -130,7 +130,7 @@ class MergeRules
     }
 
     /**
-     * Return true if an array has an exception and not need treatment
+     * Returns true if an array has an exception and dosen't need treatment
      *
      * @return boolean
      */
@@ -140,7 +140,7 @@ class MergeRules
     }
 
     /**
-     * Return true if this parameter is an array witch contains a prefix to be placed
+     * Returns true if this parameter is an array witch contains a prefix to be placed
      *
      * @return boolean
      */
@@ -154,7 +154,7 @@ class MergeRules
     }
 
     /**
-     * Return if an array is required or not
+     * Returns if an array is required or not
      *
      * @return boolean
      */
@@ -164,7 +164,7 @@ class MergeRules
     }
 
     /**
-     * Return an array with prefixes concatenated
+     * Returns an array with concatenated prefixes
      *
      * @param string $prefix
      * @return array
