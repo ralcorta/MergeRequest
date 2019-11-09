@@ -24,7 +24,7 @@ composer require pyxeel/merge_rules
 MergeRules::merge([$rules, "prefix"], $moreRules);
 ```
 
-### Example
+## Example
 
 1- Download the package
 
