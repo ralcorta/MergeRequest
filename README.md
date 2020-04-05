@@ -1,4 +1,4 @@
-# MergeRequest
+# :rocket: MergeRequest
 
 MergeRequest is a package for Laravel to merge rules between models and use them for request validations.
 
