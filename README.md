@@ -15,7 +15,7 @@ Have a Laravel Proyect 5+ and composer
 1- First download the package using composer
 
 ```
-composer require pyxeel/merge_rules
+composer require ralcorta/merge_rules
 ```
 
 2- Second, now we can use
