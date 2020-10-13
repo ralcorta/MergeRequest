@@ -29,7 +29,7 @@ MergeRules::merge([$rules, "prefix"], $moreRules);
 1- Download the package
 
 ```
-composer require pyxeel/merge_rules
+composer require ralcorta/merge_rules
 ```
 
 2- Now, we are going to create two models for merge the rules
